@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2014 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -23,19 +23,12 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "edgeFaceCirculator.H"
-#include "primitiveMesh.H"
+#include "nullObject.H"
 
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
-const Foam::edgeFaceCirculator Foam::edgeFaceCirculator::endConstIter
-(
-    NullObjectRef<primitiveMesh>(),             // primitiveMesh
-    -1,                                         // faceLabel
-    false,                                      // ownerSide
-    -1,                                         // index
-    false                                       // isBoundaryEdge
-);
+const Foam::NullObject Foam::NullObject::nullObject;
+const Foam::NullObject* Foam::nullObjectPtr = &Foam::NullObject::nullObject;
 
 
 // ************************************************************************* //

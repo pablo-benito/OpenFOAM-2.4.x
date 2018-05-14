@@ -203,7 +203,7 @@ bool Foam::sampledPatch::update()
 void Foam::sampledPatch::remapFaces(const labelUList& faceMap)
 {
     // recalculate the cells cut
-    if (&faceMap && faceMap.size())
+    if (notNull(faceMap) && faceMap.size())
     {
         MeshStorage::remapFaces(faceMap);
         patchFaceLabels_ = labelList

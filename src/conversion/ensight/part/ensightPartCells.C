@@ -67,7 +67,7 @@ void Foam::ensightPartCells::classify
     size_ = mesh.nCells();
 
     bool limited = false;
-    if (&idList)
+    if (notNull(idList))
     {
         limited = true;
         size_ = idList.size();
@@ -182,7 +182,7 @@ Foam::ensightPartCells::ensightPartCells
 )
 :
     ensightPart(partNumber, partDescription),
-    mesh_(*reinterpret_cast<polyMesh*>(0))
+    mesh_(NullObjectRef<polyMesh>())
 {}
 
 
@@ -237,7 +237,7 @@ Foam::ensightPartCells::ensightPartCells(const ensightPartCells& part)
 Foam::ensightPartCells::ensightPartCells(Istream& is)
 :
     ensightPart(),
-    mesh_(*reinterpret_cast<polyMesh*>(0))
+    mesh_(NullObjectRef<polyMesh>())
 {
     reconstruct(is);
 }

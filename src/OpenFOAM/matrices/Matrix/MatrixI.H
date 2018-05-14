@@ -47,7 +47,7 @@ clone() const
 template<class Form, class Type>
 inline const Foam::Matrix<Form, Type>& Foam::Matrix<Form, Type>::null()
 {
-    return *reinterpret_cast< Matrix<Form, Type>* >(0);
+    return NullObjectRef<Matrix<Form, Type> >();
 }
 
 

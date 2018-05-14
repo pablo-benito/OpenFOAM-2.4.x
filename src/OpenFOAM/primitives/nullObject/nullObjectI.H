@@ -2,7 +2,7 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     |
-    \\  /    A nd           | Copyright (C) 2011 OpenFOAM Foundation
+    \\  /    A nd           | Copyright (C) 2014 OpenFOAM Foundation
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
 License
@@ -23,19 +23,43 @@ License
 
 \*---------------------------------------------------------------------------*/
 
-#include "edgeFaceCirculator.H"
-#include "primitiveMesh.H"
+template <class T>
+inline const T& Foam::NullObjectRef()
+{
+    return *reinterpret_cast<const T*>(nullObjectPtr);
+}
 
-// * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
+template <class T>
+inline const T* Foam::NullObjectPtr()
+{
+    return reinterpret_cast<const T*>(nullObjectPtr);
+}
 
-const Foam::edgeFaceCirculator Foam::edgeFaceCirculator::endConstIter
-(
-    NullObjectRef<primitiveMesh>(),             // primitiveMesh
-    -1,                                         // faceLabel
-    false,                                      // ownerSide
-    -1,                                         // index
-    false                                       // isBoundaryEdge
-);
+
+template <class T>
+inline bool Foam::isNull(const T& t)
+{
+    return &t == NullObjectPtr<T>();
+}
+
+template <class T>
+inline bool Foam::notNull(const T& t)
+{
+    return &t != NullObjectPtr<T>();
+}
+
+
+template <class T>
+inline bool Foam::isNull(const T* t)
+{
+    return t == NullObjectPtr<T>();
+}
+
+template <class T>
+inline bool Foam::notNull(const T* t)
+{
+    return t != NullObjectPtr<T>();
+}
 
 
 // ************************************************************************* //

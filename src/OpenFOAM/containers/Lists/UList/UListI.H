@@ -50,7 +50,7 @@ inline Foam::UList<T>::UList(T* __restrict__ v, label size)
 template<class T>
 inline const Foam::UList<T>& Foam::UList<T>::null()
 {
-    return *reinterpret_cast< UList<T>* >(0);
+    return NullObjectRef<UList<T> >();
 }
 
 

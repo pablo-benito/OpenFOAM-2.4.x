@@ -42,6 +42,8 @@ const char* const Foam::FOAMbuild = "BUILD_STRING";
 
 #include "new.C"
 
+#include "nullObject.C"
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 // Global IO streams
 

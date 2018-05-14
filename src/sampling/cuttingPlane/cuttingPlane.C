@@ -51,7 +51,7 @@ void Foam::cuttingPlane::calcCutCells
     const edgeList& edges = mesh.edges();
 
     label listSize = cellEdges.size();
-    if (&cellIdLabels)
+    if (notNull(cellIdLabels))
     {
         listSize = cellIdLabels.size();
     }
@@ -64,7 +64,7 @@ void Foam::cuttingPlane::calcCutCells
     for (label listI = 0; listI < listSize; ++listI)
     {
         label cellI = listI;
-        if (&cellIdLabels)
+        if (notNull(cellIdLabels))
         {
             cellI = cellIdLabels[listI];
         }
@@ -400,7 +400,7 @@ void Foam::cuttingPlane::remapFaces
 )
 {
     // recalculate the cells cut
-    if (&faceMap && faceMap.size())
+    if (notNull(faceMap) && faceMap.size())
     {
         MeshStorage::remapFaces(faceMap);
 
