@@ -105,7 +105,7 @@ Foam::fvPatchField<Type>::fvPatchField
     // TODO: fixed notNull(iF) bug when compiling with gcc
 
     // if (notNull(iF) && iF.size())
-    // if (notNull(iF) && mapper.hasUnmapped())
+    if (notNull(iF) && mapper.hasUnmapped())
     {
         fvPatchField<Type>::operator=(this->patchInternalField());
     }
