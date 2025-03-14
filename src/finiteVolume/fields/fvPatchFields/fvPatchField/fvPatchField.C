@@ -98,7 +98,14 @@ Foam::fvPatchField<Type>::fvPatchField
     patchType_(ptf.patchType_)
 {
     // For unmapped faces set to internal field value (zero-gradient)
-    if (notNull(iF) && iF.size())
+    
+    // When compiling with gcc,a sigSegv(segmentation fault) crash may occur.
+    // When iF is empty,notNull(iF) fails to detect it,resulting in execution of iF.size()
+    // So it is modified to
+    // TODO: fixed notNull(iF) bug when compiling with gcc
+
+    // if (notNull(iF) && iF.size())
+    if (notNull(iF) && mapper.hasUnmapped())
     {
         fvPatchField<Type>::operator=(this->patchInternalField());
     }
